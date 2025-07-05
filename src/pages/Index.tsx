@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { TaskProvider } from "@/contexts/TaskContext";
-import LoginPage from "@/components/LoginPage";
+import AuthPage from "@/components/AuthPage";
 import Dashboard from "@/components/Dashboard";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -20,7 +20,7 @@ const AppContent = () => {
     );
   }
 
-  return user ? <Dashboard /> : <LoginPage />;
+  return user ? <Dashboard /> : <AuthPage />;
 };
 
 const Index = () => {
