@@ -21,14 +21,22 @@ const TaskForm = ({ task, onClose }: TaskFormProps) => {
   const [loading, setLoading] = useState(false);
   const [tagInput, setTagInput] = useState('');
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    title: string;
+    description: string;
+    status: 'todo' | 'in-progress' | 'completed';
+    priority: 'low' | 'medium' | 'high';
+    dueDate: string;
+    tags: string[];
+    sharedWith: string[];
+  }>({
     title: '',
     description: '',
-    status: 'todo' as const,
-    priority: 'medium' as const,
+    status: 'todo',
+    priority: 'medium',
     dueDate: '',
-    tags: [] as string[],
-    sharedWith: [] as string[]
+    tags: [],
+    sharedWith: []
   });
 
   useEffect(() => {
@@ -133,7 +141,7 @@ const TaskForm = ({ task, onClose }: TaskFormProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Status</Label>
-              <Select value={formData.status} onValueChange={(value: any) => setFormData(prev => ({ ...prev, status: value }))}>
+              <Select value={formData.status} onValueChange={(value: 'todo' | 'in-progress' | 'completed') => setFormData(prev => ({ ...prev, status: value }))}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -147,7 +155,7 @@ const TaskForm = ({ task, onClose }: TaskFormProps) => {
 
             <div className="space-y-2">
               <Label>Priority</Label>
-              <Select value={formData.priority} onValueChange={(value: any) => setFormData(prev => ({ ...prev, priority: value }))}>
+              <Select value={formData.priority} onValueChange={(value: 'low' | 'medium' | 'high') => setFormData(prev => ({ ...prev, priority: value }))}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>

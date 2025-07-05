@@ -71,7 +71,7 @@ const TaskList = ({ tasks, onEditTask }: TaskListProps) => {
   };
 
   const toggleTaskStatus = (task: Task) => {
-    const statusOrder = ['todo', 'in-progress', 'completed'];
+    const statusOrder: ('todo' | 'in-progress' | 'completed')[] = ['todo', 'in-progress', 'completed'];
     const currentIndex = statusOrder.indexOf(task.status);
     const nextStatus = statusOrder[(currentIndex + 1) % statusOrder.length];
     updateTask(task.id, { status: nextStatus });
